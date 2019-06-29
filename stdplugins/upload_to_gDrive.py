@@ -148,7 +148,7 @@ def upload_file(http, file_path, file_name, mime_type):
     drive_service = build("drive", "v2", http=http)
     # File body description
     #ID of Folder Where Files will be uploaded
-    folder_id = '1WwXcHLNy632R2xWyVz07gqLjO6Ss1hj_'
+    folder_id = "1-1a1p6JxtRZEQDQiH0SVzBhx88cKmqpW"
     
     media_body = MediaFileUpload(file_path, mimetype=mime_type, resumable=True)
     body = {
