@@ -102,6 +102,7 @@ class Config(object):
     # Google Drive ()
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
+    GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
 
 
 class Production(Config):
