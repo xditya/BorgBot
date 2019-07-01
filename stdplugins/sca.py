@@ -16,4 +16,4 @@ async def _(event):
     if input_str:
         action = input_str
     async with borg.action(event.chat_id, action):
-        await asyncio.sleep(10)  # type for 10 seconds
+        await asyncio.sleep(3600)  # type for 3600 seconds
