@@ -47,9 +47,9 @@ async def _(event):
     me = borg.me
     mention = event.from_id
     packname = f"@Prakaska's Masterpiece"
-    packshortname = f"Masterpiece"  # format: Uni_Borg_userid
+    packshortname = f"Uni_Borg_{userid}"  # format: Uni_Borg_userid
 
-    await event.edit("Grabbing Sketch Brush & Painting this Picture")
+    await event.edit("Grabbing Sketch Brush & Painting this Picture...")
 
     async with borg.conversation("@Stickers") as bot_conv:
         now = datetime.datetime.now()
