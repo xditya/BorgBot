@@ -45,7 +45,7 @@ async def _(event):
         await event.edit("Invalid message type")
         return
     me = borg.me
-    mention = event.from_id
+    userid = event.from_id
     packname = f"@Prakaska's Masterpiece"
     packshortname = f"Uni_Borg_{userid}"  # format: Uni_Borg_userid
 
