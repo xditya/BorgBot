@@ -2,7 +2,7 @@
 
 Available Commands:
 
-.think"""
+.thinking"""
 
 from telethon import events
 
@@ -12,7 +12,7 @@ import asyncio
 
 
 
-@borg.on(admin_cmd("(.*)"))
+@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 
 async def _(event):
 
