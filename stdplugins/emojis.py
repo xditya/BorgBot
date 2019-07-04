@@ -41,7 +41,7 @@ async def _(event):
             "-_______-",
             "-________-",
             "-_________-",
-            "-__________-
+            "-__________-"
         ]
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
