@@ -392,7 +392,7 @@ async def _(event):
             "Thinking... (・_・ヾ     /",
             "Thinking... (・_・ヾ     -",
             "Thinking... (・_・ヾ     \",
-            "Thinking... (・_・ヾ     |",
+            "Thinking... (・_・ヾ     |"
          ]
 
         for i in animation_ttl:
