@@ -1,9 +1,9 @@
 """Emoji
 Available Commands:
-.emoji shrug
-.emoji apple
-.emoji :/
-.emoji -_-"""
+.shrug
+.apple
+.:/
+.-_-"""
 from telethon import events
 import asyncio
 from uniborg.util import admin_cmd
@@ -20,15 +20,15 @@ async def _(event):
         await event.edit(input_str)
         animation_chars = [
             "¯\_(ツ)_/¯",
-            "--____(ツ)____--",
+            "-____(ツ)____-",
             "¯\_(ツ)_/¯",
-            "--____(ツ)____--",
+            "-____(ツ)____-",
             "¯\_(ツ)_/¯",
-            "--____(ツ)____--",
+            "-____(ツ)____-",
             "¯\_(ツ)_/¯",
-            "--____(ツ)____--",
+            "-____(ツ)____-",
             "¯\_(ツ)_/¯",
-            "--____(ツ)____--"
+            "-____(ツ)____-"
         ]
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
