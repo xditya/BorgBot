@@ -32,17 +32,9 @@ async def _(event):
     elif input_str == "-_-":
         await event.edit(input_str)
         animation_chars = [
-            "-_-",
             "-__-",
-            "-___-",
-            "-____-",
-            "-_____-",
-            "-______-",
-            "-_______-",
-            "-________-",
-            "-_________-",
-            "-__________-"
+            "-_-",
         ]
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
-            await event.edit(animation_chars[i % -2])
+            await event.edit(animation_chars[i % 10])
