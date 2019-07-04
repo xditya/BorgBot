@@ -9,11 +9,11 @@ import asyncio
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("emoji (.*)"))
+@borg.on(admin_cmd("(.*)"))
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 0.3
+    animation_interval = 0.5
     animation_ttl = range(0, 16)
     input_str = event.pattern_match.group(1)
     if input_str == "shrug":
@@ -32,14 +32,16 @@ async def _(event):
     elif input_str == "-_-":
         await event.edit(input_str)
         animation_chars = [
-            "-________-",
-            "-_______-",
-            "-______-",
-            "-_____-",
-            "-____-",
-            "-___-",
+            "-_-",
             "-__-",
-            "-_-"
+            "-___-",
+            "-____-",
+            "-_____-",
+            "-______-",
+            "-_______-",
+            "-________-",
+            "-_________-",
+            "-__________-
         ]
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
