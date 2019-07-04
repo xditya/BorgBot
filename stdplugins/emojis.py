@@ -34,6 +34,15 @@ async def _(event):
         animation_chars = [
             "-__-",
             "-_-",
+            "-__-",
+            "-___-",
+            "-____-",
+            "-_____-",
+            "-______-",
+            "-_______-",
+            "-________-",
+            "-_________-",
+            "-__________-"
         ]
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
