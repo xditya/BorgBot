@@ -6,6 +6,7 @@ Syntax: .eval PythonCode"""
 from telethon import events, sync, errors, functions, types
 import inspect
 import io
+import asyncio
 from uniborg.util import admin_cmd
 
 
@@ -39,5 +40,8 @@ async def _(event):
                 caption=cmd,
                 reply_to=reply_to_id
             )
-            await asyncio.sleep(0.1)
             await event.delete()
+
+    else:
+        await asyncio.sleep(0.1)
+        await event.delete()
