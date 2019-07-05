@@ -51,7 +51,7 @@ async def send_plug_in(event):
         return
     message_id = event.message.id
     input_str = event.pattern_match["shortname"]
-    the_plugin_file = "./{}.txt".format(input_str)
+    the_plugin_file = "./{}./txt/py".format(input_str)
     start = datetime.now()
     await borg.send_file(  # pylint:disable=E0602
         event.chat_id,
