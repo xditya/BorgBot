@@ -39,4 +39,5 @@ async def _(event):
                 caption=cmd,
                 reply_to=reply_to_id
             )
+            await asyncio.sleep(0.1)
             await event.delete()
