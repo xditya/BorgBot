@@ -33,26 +33,6 @@ async def download(event):
 	input_str = event.pattern_match.group(1)
 	if not os.path.isdir(GIT_TEMP_DIR):
 		os.makedirs(GIT_TEMP_DIR)
-	start = datetime.now()
-	reply_message = await event.get_reply_message()
-	try:
-		c_time = time.time()
-		downloaded_file_name = await borg.download_media(
-			reply_message,
-			GIT_TEMP_DIR,
-			progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-			progress(d, t, mone, c_time, "trying to download")
-			)
-		)
-	except Exception as e: 
-		await mone.edit(str(e))
-	else:
-		end = datetime.now()
-		ms = (end - start).seconds
-		await event.delete()
-		await mone.edit("Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms))
-		await mone.edit("Committing to Github....")
-		await git_commit(downloaded_file_name,mone)
 
 async def git_commit(file_name,mone):        
 	content_list = []
@@ -79,7 +59,7 @@ async def git_commit(file_name,mone):
 		try:
 			repo.delete_file(file_name, "Uploaded New Plugin", commit_data, branch="master")
 			print("Committed File")
-			await mone.edit("`Committed on Your Github Repo.`")
+			await mone.edit("`File Deleted From GitHub`")
 		except:
 			print("Cannot Create Plugin")
 			await mone.edit("Cannot Upload Plugin")
