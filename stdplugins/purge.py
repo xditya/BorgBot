@@ -19,7 +19,7 @@ async def _(event):
         async for message in borg.iter_messages(
             event.chat_id,
             min_id=event.reply_to_msg_id,
-            from_user=from_user
+            from_user=from_user):
             msgs.append(message)
             i = i + 1
             msgs.append(event.reply_to_msg_id)
