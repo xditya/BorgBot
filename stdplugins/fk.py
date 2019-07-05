@@ -2,7 +2,7 @@
 
 Available Commands:
 
-.fk"""
+.k"""
 
 from telethon import events
 
@@ -15,9 +15,9 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1.5
-    animation_ttl = range(0, 8)
+    animation_ttl = range(0, 9)
     input_str = event.pattern_match.group(1)
-    if input_str == "fk":
+    if input_str == "k":
         await event.edit(input_str)
         animation_chars = [
             "💠",
