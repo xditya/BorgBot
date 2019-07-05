@@ -20,6 +20,7 @@ async def _(event):
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
     evaluation = eval(cmd)
+    await event.delete()
     # https://t.me/telethonofftopic/43873
     # https://t.me/TheUseLessGroup/40472
     try:
@@ -28,8 +29,3 @@ async def _(event):
     except (Exception) as e:
         evaluation = str(e)
     # https://t.me/telethonofftopic/43873
-            await event.delete()
-
-    else:
-        await asyncio.sleep(0.1)
-        await event.delete()
