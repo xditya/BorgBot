@@ -9,7 +9,7 @@ async def _(event):
     if event.fwd_from:
         return
     if event.reply_to_msg_id:
-        i = 1
+        i = 0
         msgs = []
         from_user = None
         input_str = event.pattern_match.group(1)
@@ -20,9 +20,9 @@ async def _(event):
             event.chat_id,
             min_id=event.reply_to_msg_id,
             from_user=from_user
-        ):
-            i = i + 1
             msgs.append(message)
+            i = i + 1
+            msgs.append(event.reply_to_msg_id)
             if len(msgs) == 100:
                 await borg.delete_messages(event.chat_id, msgs)
                 msgs = []
