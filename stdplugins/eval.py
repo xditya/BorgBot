@@ -28,18 +28,6 @@ async def _(event):
     except (Exception) as e:
         evaluation = str(e)
     # https://t.me/telethonofftopic/43873
-    final_output = "**EVAL**: `{}` \n\n **OUTPUT**: \n`{}` \n".format(cmd, evaluation)
-    if len(final_output) > Config.MAX_MESSAGE_SIZE_LIMIT:
-        with io.BytesIO(str.encode(final_output)) as out_file:
-            out_file.name = "eval.text"
-            await borg.send_file(
-                event.chat_id,
-                out_file,
-                force_document=True,
-                allow_cache=False,
-                caption=cmd,
-                reply_to=reply_to_id
-            )
             await event.delete()
 
     else:
