@@ -55,10 +55,10 @@ async def _(event):
             "¶H×NK&N*",
             "NGITHKIN",
             "T+I#K@₹G",
-            "THINKING"
+            "THINKING... 🤔"
         ]
 
         for i in animation_ttl:
         	
             await asyncio.sleep(animation_interval)
-            await event.edit(animation_chars[i % 36])
+            await event.edit(animation_chars[i % 72])
