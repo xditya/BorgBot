@@ -173,3 +173,10 @@ def upload_file(http, file_path, file_name, mime_type):
     file = drive_service.files().get(fileId=file["id"]).execute()
     download_url = file.get("webContentLink")
     return download_url
+
+@borg.on(admin_cmd(pattern="gfolder ?(.*)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    folder_link = "https://drive.google.com/drive/u/2/folders/"+parent_id    
+    await event.edit("`Here is Your Gdrive Folder link : `\n"+folder_link)    
