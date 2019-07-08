@@ -73,9 +73,6 @@ class Config(object):
     # feel free to use http://telegram.dog/Remove_BGBot
     REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
     # Set to True if you want to block users that are spamming your PMs.
-    SLAP_USERNAME = os.environ.get("SLAP_USERNAME", None)
-    GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN", None)
-    GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME", None)
     NO_P_M_SPAM = bool(os.environ.get("NO_P_M_SPAM", False))
     # define "spam" in PMs
     MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 3))
@@ -102,12 +99,7 @@ class Config(object):
     # Google Drive ()
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
-    GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
-    AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", None)
-    os.makedirs(TMP_DOWNLOAD_DIRECTORY)
-    t_file = open(TMP_DOWNLOAD_DIRECTORY+"auth_token.txt","w")
-    t_file.write(AUTH_TOKEN_DATA)
-    t_file.close()
+    G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
 
 
 class Production(Config):
