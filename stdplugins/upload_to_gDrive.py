@@ -33,7 +33,8 @@ CLIENT_SECRET = Config.G_DRIVE_CLIENT_SECRET
 OAUTH_SCOPE = "https://www.googleapis.com/auth/drive.file"
 # Redirect URI for installed apps, can be left as is
 REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
-parent_id = Config.GDRIVE_FOLDER_ID
+# global variable to set Folder ID to upload to
+G_DRIVE_F_PARENT_ID = None
 
 
 @borg.on(admin_cmd(pattern="ugdrive ?(.*)", allow_sudo=True))
@@ -80,11 +81,12 @@ async def _(event):
             return False
     # logger.info(required_file_name)
     if required_file_name:
+        #
+        if Config.G_DRIVE_AUTH_TOKEN_DATA is not None:
+            with open(G_DRIVE_TOKEN_FILE, "w") as t_file:
+                t_file.write(Config.G_DRIVE_AUTH_TOKEN_DATA)
         # Check if token file exists, if not create it by requesting authorization code
-        try:
-            with open(G_DRIVE_TOKEN_FILE) as f:
-                pass
-        except IOError:
+        if not os.path.isfile(G_DRIVE_TOKEN_FILE):
             storage = await create_token_file(G_DRIVE_TOKEN_FILE, event)
             http = authorize(G_DRIVE_TOKEN_FILE, storage)
         # Authorize, get file parameters, upload file and print out result URL for download
@@ -99,6 +101,30 @@ async def _(event):
             await mone.edit(f"Exception occurred while uploading to gDrive {e}")
     else:
         await mone.edit("File Not found in local server. Give me a file path :((")
+
+
+@borg.on(admin_cmd(pattern="gdrivesp https?://drive\.google\.com/drive/u/\d/folders/([-\w]{25,})", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    mone = await event.reply("Processing ...")
+    input_str = event.pattern_match.group(1)
+    if input_str:
+        G_DRIVE_F_PARENT_ID = input_str
+        await mone.edit("Custom Folder ID set successfully. The next uploads will upload to {G_DRIVE_F_PARENT_ID} till `.gdriveclear`")
+        await event.delete()
+    else:
+        await mone.edit("Send `.gdrivesp https://drive.google.com/drive/u/X/folders/Y` to set the folder to upload new files to")
+
+
+@borg.on(admin_cmd(pattern="gdriveclear", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    mone = await event.reply("Processing ...")
+    G_DRIVE_F_PARENT_ID = None
+    await mone.edit("Custom Folder ID cleared successfully.")
+    await event.delete()
 
 
 # Get mime type and name of given file
@@ -148,15 +174,14 @@ def upload_file(http, file_path, file_name, mime_type):
     # Create Google Drive service instance
     drive_service = build("drive", "v2", http=http)
     # File body description
-    
     media_body = MediaFileUpload(file_path, mimetype=mime_type, resumable=True)
     body = {
         "title": file_name,
         "description": "backup",
-        "mimeType": mime_type
+        "mimeType": mime_type,
     }
-    if parent_id:
-        body[ 'parents' ] = [{'id': parent_id}]
+    if G_DRIVE_F_PARENT_ID is not None:
+        body["parents"] = [{"id": G_DRIVE_F_PARENT_ID}]
     # Permissions body description: anyone who has link can upload
     # Other permissions can be found at https://developers.google.com/drive/v2/reference/permissions
     permissions = {
@@ -173,10 +198,3 @@ def upload_file(http, file_path, file_name, mime_type):
     file = drive_service.files().get(fileId=file["id"]).execute()
     download_url = file.get("webContentLink")
     return download_url
-
-@borg.on(admin_cmd(pattern="gfolder ?(.*)", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    folder_link = "https://drive.google.com/drive/u/2/folders/"+parent_id    
-    await event.edit("`Here is Your Gdrive Folder link : `\n"+folder_link)    
