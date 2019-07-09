@@ -1,3 +1,3 @@
-telethon
+telethon>=1.9.0
 lxml
 -r ./requirements-stdborg.txt
