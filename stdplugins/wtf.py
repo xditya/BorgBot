@@ -28,6 +28,10 @@ async def _(event):
             ]
     mentions = "What The F Brah\n https://telegra.ph//file/f3b760e4a99340d331f9b.jpg"
     chat = await event.get_input_chat()
+        for i in animation_ttl:
+        	
+            await asyncio.sleep(animation_interval)
+            await event.edit(animation_chars[i %5 ])
     async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
         mentions += f""
     reply_message = None
@@ -37,7 +41,4 @@ async def _(event):
     else:
         await event.reply(mentions)
 
-        for i in animation_ttl:
-        	
-            await asyncio.sleep(animation_interval)
-            await event.edit(animation_chars[i %5 ])
+        
