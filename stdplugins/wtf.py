@@ -23,9 +23,21 @@ async def _(event):
             "What",
             "What The",
             "What The F",
-            "What The F Brah",
-            "What The F Brah\n https://telegra.ph//file/f3b760e4a99340d331f9b.mp4"
+            "What The F Brah"
+            
         ]
+        
+    mentions = "What The F Brah\n https://telegra.ph//file/f3b760e4a99340d331f9b.jpg"
+    chat = await event.get_input_chat()
+    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+        mentions += f""
+    reply_message = None
+    if event.reply_to_msg_id:
+        reply_message = await event.get_reply_message()
+        await reply_message.reply(mentions)
+    else:
+        await event.reply(mentions)
+    await event.delete()
 
         for i in animation_ttl:
         	
