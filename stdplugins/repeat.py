@@ -8,4 +8,6 @@ async def _(event):
     message = event.text[10:]
     count = int(event.text[8:10])
     repmessage = message * count
+    await event.respond(repmessage)
+        else
     await event.edit(repmessage)
