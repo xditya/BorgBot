@@ -22,7 +22,7 @@ async def _(event):
 
         return
 
-    animation_interval = 0.3
+    animation_interval = 0.5
     
 
     animation_ttl = range(0, 8)
@@ -41,7 +41,7 @@ async def _(event):
             "i",
             "aRriVe",
             "😈",
-            "EvErYbOdY iZ gAnGsTa uNtiL i aRriVe"
+            "EvErYbOdY iZ gAnGsTa uNtiL i aRriVe 😈"
         ]
 
         for i in animation_ttl:
