@@ -190,15 +190,18 @@ if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         else:
             result = builder.article(
                 "© @UniBorg",
-                text="""Try @UniBorg
+                text="""Try My Fork
 You can log-in as Bot or User and do many cool things with your Telegram account.
 
-All instaructions to run @UniBorg in your PC has been explained in https://github.com/SpEcHiDe/UniBorg""",
+All instaructions to run @UniBorg in your PC has been explained in https://github.com/SpEcHiDe/UniBorg
+Press the buttons below for more information""",
                 buttons=[
-                    [custom.Button.url("Join the Channel", "https://telegram.dog/UniBorg"), custom.Button.url(
-                        "Join the Group", "tg://some_unsupported_feature")],
+                    [custom.Button.url("🙆‍♂️Join the Channel🙆‍♂️", "https://telegram.dog/UniBorg"), custom.Button.url(
+                        "😇Join Me😇", "https://github.com/SnapDragon7410/UniBorg")],
                     [custom.Button.url(
-                        "Source Code", "tg://some_unsupported_feature")]
+                        "☻Source Code☻", "https://github.com/udf/UniBorg")],
+                    [custom.Button.text("🌍Tutorial🌍", "Install this application from Google Play (https://play.google.com/store/apps/details?id=com.termux)\n\n Open Termux\n\n1 termux-setup-storage \n\n2 pkg install python git\n\n3 python3.7 -m venv venv\n\n4 . ./venv/bin/activate\n\n5 cd /sdcard/Telegram\n\n6 git clone https://github.com/spechide/UniBorg\n\n7 cd UniBorg\n\n8 pip install telethon\n\n9 python3 GenerateStringSession.py\n\n?? Follow the OnScreen prompts\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n1. Login to https://my.telegram.org using an already registered Telegram account.\n2. Click on API development tools\n3. Create new application.(here in this video i have already created this application.so you have to create this application first.)\n4. for filling the app title,short name,url u can fill as u prefer.\n5. Click on Save Changes.\n6. In the new screen, App api_id is the APP_ID, and App api_hash is the API_HASH\n\nN.B.: currently, You cannot revoke your APP_ID and API_HASH. Hence it should be kept confidential. Your account may get limited or deleted, if Telegram suspects that the APP_ID is being used for spamming.\n                 OR\nHow to get your APP_ID and API_HASH [web view] :\nhttps://bit.ly/2Wh6R9T\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nN.B.: Keep this string safe! Anyone with this string can use it to login into your account and do anything they want to to do.\n\n\n?? Open this Heroku Link: https://github.com/SpEcHiDe/UniBorg\n\n?? Follow the OnScreen prompts
+?? App name, APP_ID, API_HASH, and HU_STRING_SESSION are mandatory fields. Rest of the fields can be left with the default values.\n\n?? Tap on Deploy app\n\n?? Wait for deploy to finish.\n\n?? After deploy open the URL https://dashboard.heroku.com/apps/<Appname>/resources\n\n?? Enable the worker dyno, by toggling the slide-toggle.\n\n?? Done. Your UserBot is alive.")]
                 ],
                 link_preview=False
             )
