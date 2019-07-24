@@ -110,7 +110,7 @@ async def _(event):
                 await silently_send_message(bot_conv, sticker_emoji)
                 await silently_send_message(bot_conv, "/done")
 
-    await event.edit(f"▕╮╭┻┻╮╭┻┻╮╭▕╮╲\n▕╯┃╭╮┃┃╭╮┃╰▕╯╭▏\n▕╭┻┻┻┛┗┻┻┛   ▕  ╰▏\n▕╰━━━┓┈┈┈╭╮▕╭╮▏\n▕╭╮╰┳┳┳┳╯╰╯▕╰╯▏\n▕╰╯┈┗┛┗┛┈╭╮▕╮┈▏\n\n[sticker looted!\n\n This Sticker is now stored to your database...](t.me/addstickers/{packshortname})")
+    await event.edit(f"[❗This Sticker is now stored to your database❗](t.me/addstickers/{packshortname})")
 
 
 @borg.on(admin_cmd("packinfo"))
