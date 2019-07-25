@@ -1,14 +1,10 @@
-"""Emoji
+"""QuickHeal Total Security Scan
 
 Available Commands:
 
-.emoji shrug
-
-.emoji apple
-
-.emoji :/
-
-.emoji -_-"""
+.quickheal
+.sqh
+.vquickheal"""
 
 from telethon import events
 
@@ -26,7 +22,7 @@ async def _(event):
 
         return
 
-    animation_interval = 5
+    animation_interval = 4
 
     animation_ttl = range(0, 11)
 
@@ -65,7 +61,7 @@ async def _(event):
 
         return
 
-    animation_interval = 0.1
+    animation_interval = 0.2
 
     animation_ttl = range(0, 11)
 
@@ -105,7 +101,7 @@ async def _(event):
 
         return
 
-    animation_interval = 5
+    animation_interval = 3
 
     animation_ttl = range(0, 11)
 
