@@ -1,5 +1,5 @@
 """Take screenshot of any website
-Syntax: .screencapture <Website URL>"""
+Syntax: .ss <Website URL>"""
 
 import io
 import requests
@@ -7,7 +7,7 @@ from telethon import events
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("screencapture (.*)"))
+@borg.on(admin_cmd("ss (.*)"))
 async def _(event):
     if event.fwd_from:
         return
