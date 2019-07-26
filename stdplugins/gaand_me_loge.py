@@ -1,9 +1,6 @@
-"""Emoji
-Available Commands:
-.emoji shrug
-.emoji apple
-.emoji :/
-.emoji -_-"""
+"""Animation : Gaand me Loge
+
+Command .gaand"""
 from telethon import events
 import asyncio
 
