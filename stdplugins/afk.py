@@ -106,7 +106,7 @@ async def on_afk(event):
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
         msg = None
-        message_to_reply = f"My Boss is Away From Keyboard . \nSir Will Check Your Messeges and Try to Reply.\Kindly Don't Spam . Thank You .\n\n**Last Seen: Only God Knows.** " + \
+        message_to_reply = f"My Boss is Away From Keyboard . \nHe Will Check Your Messeges and Try to Reply.\nKindly Don't Spam . Thank You .\n\n**Last Seen: Only God Knows.** " + \
             f"\n\n__Reason:__ {reason}" \
             if reason \
             else f"/kickme\n\n**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
