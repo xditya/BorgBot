@@ -4,46 +4,18 @@ import asyncio
 import datetime
 from telethon import events
 from telethon.tl import functions, types
-from telethon.utils import resolve_id
-from uniborg.util import admin_cmd
 
 
 borg.storage.USER_AFK = {}  # pylint:disable=E0602
 borg.storage.afk_time = None  # pylint:disable=E0602
 borg.storage.last_afk_message = {}  # pylint:disable=E0602
-borg.storage.recvd_messages = {}  # pylint:disable=E0602
 
 
 @borg.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
 async def set_not_afk(event):
     current_message = event.message.message
-    if Config.COMMAND_HAND_LER + "afk" not in current_message and "yes" in borg.storage.USER_AFK:  # pylint:disable=E0602
-        borg.storage.USER_AFK = {}  # pylint:disable=E0602
-        borg.storage.afk_time = None  # pylint:disable=E0602
-        # pylint:disable=E0602
-        for chat_id in borg.storage.last_afk_message:
-            await borg.storage.last_afk_message[chat_id].delete()
-        borg.storage.last_afk_message = {}  # pylint:disable=E0602
-        recvd_messages = "You received the following messages: \n"
-        # pylint:disable=E0602
-        for chat_id in borg.storage.recvd_messages:  # pylint:disable=E0602
-            current_message = borg.storage.recvd_messages[chat_id]
-            user_id = current_message.from_id
-            message_id = current_message.id
-            chat_id, _ = resolve_id(chat_id)
-            if isinstance(_, types.PeerUser):
-                recvd_messages += f"👉 [{chat_id}](tg://user?id={chat_id})"
-                # sadly, there is no way to goto a particular message by a user,
-                # after the 5.5 Android update
-            else:
-                recvd_messages += f"👉 https://t.me/c/{chat_id}/{message_id} \n"
+    if ".afk" not in current_message and "yes" in borg.storage.USER_AFK:  # pylint:disable=E0602
         try:
-            if recvd_messages != "You received the following messages: \n":
-                await borg.send_message(  # pylint:disable=E0602
-                    Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
-                    recvd_messages,
-                    link_preview=False
-                )
             await borg.send_message(  # pylint:disable=E0602
                 Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
                 "Set AFK mode to False"
@@ -57,10 +29,11 @@ async def set_not_afk(event):
                 reply_to=event.message.id,
                 silent=True
             )
-        borg.storage.recvd_messages = {}
+        borg.storage.USER_AFK = {}  # pylint:disable=E0602
+        borg.storage.afk_time = None  # pylint:disable=E0602
 
 
-@borg.on(admin_cmd("afk ?((.|\n)*)"))  # pylint:disable=E0602
+@borg.on(events.NewMessage(pattern=r"\.afk ?(.*)", outgoing=True))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -71,8 +44,7 @@ async def _(event):
                 types.InputPrivacyKeyStatusTimestamp()
             )
         )
-        # logger.info(last_seen_status)
-        if len(last_seen_status.rules) > 0 and isinstance(last_seen_status.rules[0], types.PrivacyValueAllowAll):
+        if isinstance(last_seen_status.rules, types.PrivacyValueAllowAll):
             borg.storage.afk_time = datetime.datetime.now()  # pylint:disable=E0602
         borg.storage.USER_AFK.update({"yes": reason})  # pylint:disable=E0602
         if reason:
@@ -97,15 +69,11 @@ async def _(event):
 async def on_afk(event):
     if event.fwd_from:
         return
-    borg.storage.recvd_messages[event.chat_id] = event.message
     afk_since = "**a while ago**"
     current_message_text = event.message.message.lower()
     if "afk" in current_message_text:
         # userbot's should not reply to other userbot's
         # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
-        return False
-    if event.chat_id in Config.UB_BLACK_LIST_CHAT:
-        # don't reply if chat is added to blacklist
         return False
     if borg.storage.USER_AFK and not (await event.get_sender()).bot:  # pylint:disable=E0602
         reason = borg.storage.USER_AFK["yes"]  # pylint:disable=E0602
@@ -130,7 +98,7 @@ async def on_afk(event):
                     afk_since = date.strftime("%A, %Y %B %m, %H:%I")
                 else:
                     wday = now + datetime.timedelta(days=-days)
-                    afk_since = wday.strftime("%A")
+                    afk_since = wday.strftime('%A')
             elif hours > 1:
                 afk_since = f"`{int(hours)}h{int(minutes)}m` **ago**"
             elif minutes > 0:
@@ -138,11 +106,12 @@ async def on_afk(event):
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
         msg = None
-        message_to_reply = f"I'm afk since {afk_since} " + \
-            f"and I will be back soon\n__Reason:__ {reason}" \
+        message_to_reply = f"My Boss is Away From Keyboard . \nSir Will Check Your Messeges and Try to Reply.\Kindly Don't Spam . Thank You .\n\n**Last Seen: Only God Knows.** " + \
+            f"\n\n__Reason:__ {reason}" \
             if reason \
-            else f"I'm afk since {afk_since} and I will be back soon."
+            else f"/kickme\n\n**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
         msg = await event.reply(message_to_reply)
+        await asyncio.sleep(5)
         if event.chat_id in borg.storage.last_afk_message:  # pylint:disable=E0602
             await borg.storage.last_afk_message[event.chat_id].delete()  # pylint:disable=E0602
         borg.storage.last_afk_message[event.chat_id] = msg  # pylint:disable=E0602
