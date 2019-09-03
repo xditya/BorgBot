@@ -68,7 +68,6 @@ class Config(object):
     NO_LOAD = [
         "fwd",
         "telegraph",
-        "afk",
         "gban"
     ]
     # Get your own API key from https://www.remove.bg/ or
@@ -102,9 +101,11 @@ class Config(object):
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
     G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
+    #Carbon
     CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
     GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
-
+    
+    
 class Production(Config):
     LOGGER = False
 
