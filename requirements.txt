@@ -1,4 +1,7 @@
 telethon>=1.9.0
 lxml
 selenium
+ChatterBot
+spcli
+instaloader
 -r ./requirements-stdborg.txt
