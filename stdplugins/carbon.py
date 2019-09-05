@@ -63,8 +63,8 @@ async def carbon_api(e):
    await e.client.send_file(
          e.chat_id,
          file,
-         caption="Made using [Carbon](https://carbon.now.sh/about/) by Λгɳαɓ,\n© [Dawn Labs](https://dawnlabs.io/)",
-         force_document=True,
+         caption="《《 CARBON by [BorgBot](github.com/ArnabXD/BorgBot) 》》",
+         force_document=False,
          reply_to=e.message.reply_to_msg_id,
          )
 
