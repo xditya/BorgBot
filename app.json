@@ -74,6 +74,16 @@
       "value": "UniBorg",
       "required": false
     },
+    "GOOGLE_CHROME_BIN": {
+      "description": "No Need to Change This",
+      "value": "/app/.apt/usr/bin/google-chrome",
+      "required": true
+    },
+    "CHROME_DRIVER": {
+      "description": "No Need to Change This",
+      "value": "/app/.chromedriver/bin/chromedriver",
+      "required": false
+    },
     "OCR_SPACE_API_KEY": {
       "description": "Get an API Key from http://OCR.Space",
       "required": false
