@@ -109,7 +109,7 @@ async def on_afk(event):
         message_to_reply = f"My Boss is Away From Keyboard . \nHe Will Check Your Messeges and Try to Reply.\nKindly Don't Spam . Thank You .\n\n**Last Seen: Only God Knows.** " + \
             f"\n\n__Reason:__ {reason}" \
             if reason \
-            else f"/kickme\n\n**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
+            else f"**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
         if event.chat_id in borg.storage.last_afk_message:  # pylint:disable=E0602
