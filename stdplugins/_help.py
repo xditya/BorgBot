@@ -12,13 +12,13 @@ async def _(event):
         s_help_string = borg._plugins[splugin_name].__doc__
     else:
         s_help_string = ""
-    help_string = """@UniBorg
+    help_string = """@giveaways_24hrs
 
-Userbot Help Window of @arnab431
+Userbot Help Window of @xditya
 Python {}
 Telethon {}
 
-Github : https://github.com/ArnabXD/BorgBot""".format(
+Channel : t.me/giveaways_24hrs""".format(
         sys.version,
         __version__
     )
@@ -54,4 +54,4 @@ async def _(event):
     result = await borg(functions.help.GetConfigRequest())  # pylint:disable=E0602
     result = result.stringify()
     logger.info(result)  # pylint:disable=E0602
-    await event.edit("""@arnab431""")
+    await event.edit("""@xditya""")
